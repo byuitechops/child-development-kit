@@ -1,0 +1,30 @@
+{
+  "name": "child-development-kit",
+  "version": "1.0.0",
+  "description": "Development environment for our developers to make child modules.",
+  "main": "standardTests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byuitechops/child-development-kit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byuitechops/child-development-kit/issues"
+  },
+  "homepage": "https://github.com/byuitechops/child-development-kit#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "chalk": "^2.3.0",
+    "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
+    "decompress": "^4.2.0",
+    "del": "^3.0.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "rimraf": "^2.6.2",
+    "unzip": "github:byuitechops/unzip"
+  }
+}
