@@ -2,7 +2,7 @@
   "name": "child-development-kit",
   "version": "1.0.0",
   "description": "Development environment for our developers to make child modules.",
-  "main": "standardTests.js",
+  "main": "cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
