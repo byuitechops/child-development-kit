@@ -1,7 +1,10 @@
 const prompt = require('prompt');
 const chalk = require('chalk');
 const path = require('path');
-const preImportTest = require('./preImportTest.js');
+const createCourseObj = require('create-course-object');
+const indexCourse = require('index-directory').conversionTool;
+const asyncLib = require('async');
+const verify = require('course-object-verifier');
 
 prompt.message = chalk.greenBright('Test Environment: ');
 prompt.delimiter = '';
@@ -36,19 +39,31 @@ module.exports = (childModule, finalCallback) => {
         if (result.gauntletType === 'pre') {
 
             var gauntletPath = path.join('.', gauntlets[result.gauntletNumber]);
+            const settings = {
+                'debug': true,
+                'readAll': true,
+                'online': true,
+                'keepFiles': true,
+                'deleteCourse': false,
+                'useDownloader': false
+            };
 
-            preImportTest(gauntletPath, (finalErr, finalCourse) => {
-                if (finalErr) console.error(finalErr);
+            asyncLib.waterfall([
+                asyncLib.constant(filepath, settings),
+                createCourseObj,
+                verify,
+                indexCourse,
+                verify,
+                childModule,
+                verify
+            ], (waterErr, resultCourse) => {
+                if (waterErr) console.error(waterErr);
                 else {
-
-
-
-
-
+                    finalCallback(null, resultCourse);
                 }
             });
 
-            /* If the user said PostImport */
+        /* If the user said PostImport */
         } else {
 
         }

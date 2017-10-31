@@ -1,7 +1,6 @@
 const createCourseObj = require('create-course-object');
 const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
-const childModule = require('./myChildModule');
 const verify = require('course-object-verifier');
 
 module.exports = (filepath, stepCallback) => {
