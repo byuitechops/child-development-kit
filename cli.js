@@ -37,7 +37,7 @@ function adjustFilepaths (course, cb) {
     course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName.split('.zip')[0]);
     course.info.altUnzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessed', course.info.fileName.split('.zip')[0]);
     course.info.zippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LReady', course.info.fileName);
-    callback(null, course);
+    cb(null, course);
 }
 
 module.exports = (childModule, finalCallback) => {
