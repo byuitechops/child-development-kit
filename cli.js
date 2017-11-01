@@ -32,6 +32,13 @@ const promptQuestions = {
     }
 };
 
+function adjustFilepaths (course, cb) {
+    course.info.originalFilepath = path.join('.', 'node_modules/child-development-kit/D2LOriginal', course.info.fileName);
+    course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName.split('.zip')[0]);
+    course.info.altUnzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessed', course.info.fileName.split('.zip')[0]);
+    course.info.zippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LReady', course.info.fileName);
+}
+
 module.exports = (childModule, finalCallback) => {
     prompt.start();
     prompt.get(promptQuestions, (err, result) => {
@@ -51,6 +58,9 @@ module.exports = (childModule, finalCallback) => {
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
+                (course, cb) => {
+                        course.un
+                },
                 verify,
                 indexCourse,
                 verify,
