@@ -49,7 +49,7 @@ module.exports = (childModule, finalCallback) => {
             };
 
             asyncLib.waterfall([
-                asyncLib.constant(filepath, settings),
+                asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
                 verify,
                 indexCourse,
