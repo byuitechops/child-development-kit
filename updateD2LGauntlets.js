@@ -1,5 +1,5 @@
 /* Dependencies */
-const downloader = require('d2l-course-downloader');
+const downloader = require('d2l-course-downloader').gauntlets;
 const decompress = require('decompress');
 const del = require('del');
 const chalk = require('chalk');
