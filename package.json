@@ -1,35 +1,39 @@
 {
-  "name": "child-development-kit",
-  "version": "1.0.0",
-  "description": "Development environment for our developers to make child modules.",
-  "main": "cli.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/byuitechops/child-development-kit.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/byuitechops/child-development-kit/issues"
-  },
-  "homepage": "https://github.com/byuitechops/child-development-kit#readme",
-  "dependencies": {
-    "async": "^2.5.0",
-    "canvas-wrapper": "github:byuitechops/Canvas-wrapper",
-    "chalk": "^2.3.0",
-    "course-object-verifier": "github:byuitechops/course-object-verifier",
-    "create-course-object": "github:byuitechops/create-course-object",
-    "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
-    "decompress": "^4.2.0",
-    "del": "^3.0.0",
-    "fs": "0.0.1-security",
-    "index-directory": "github:byuitechops/index-directory",
-    "path": "^0.12.7",
-    "prompt": "^1.0.0",
-    "rimraf": "^2.6.2",
-    "unzip": "github:byuitechops/unzip"
-  }
+    "name": "child-development-kit",
+    "version": "1.0.0",
+    "description": "Development environment for our developers to make child modules.",
+    "main": "cli.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/byuitechops/child-development-kit.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/byuitechops/child-development-kit/issues"
+    },
+    "homepage": "https://github.com/byuitechops/child-development-kit#readme",
+    "dependencies": {
+        "async": "^2.5.0",
+        "canvas-wrapper": "github:byuitechops/Canvas-wrapper",
+        "chalk": "^2.3.0",
+        "course-object-verifier": "github:byuitechops/course-object-verifier",
+        "create-course-object": "github:byuitechops/create-course-object",
+        "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
+        "decompress": "^4.2.0",
+        "del": "^3.0.0",
+        "fs": "0.0.1-security",
+        "index-directory": "github:byuitechops/index-directory",
+        "path": "^0.12.7",
+        "prompt": "^1.0.0",
+        "rimraf": "^2.6.2",
+        "unzip": "github:byuitechops/unzip"
+    },
+    "bin": {
+        "updatePre": "./updateD2LGauntlets.js",
+        "updatePost": "./updateCanvasGauntlets.js"
+    }
 }

@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const prompt = require('prompt');
 const chalk = require('chalk');
 const path = require('path');
@@ -5,6 +6,8 @@ const createCourseObj = require('create-course-object');
 const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
+const updateD2L = require('./updateD2LGauntlets');
+const updateCanvas = require('./updateCanvasGauntlets');
 
 prompt.message = chalk.greenBright('Test Environment: ');
 prompt.delimiter = '';
@@ -40,7 +43,10 @@ function adjustFilepaths (course, cb) {
     cb(null, course);
 }
 
-module.exports = (childModule, finalCallback) => {
+exports.updateD2L = updateD2L();
+exports.updateCanvas = updateCanvas();
+exports.testEnv = (childModule, finalCallback) => {
+
     prompt.start();
     prompt.get(promptQuestions, (err, result) => {
         /* If the user said PreImport */
