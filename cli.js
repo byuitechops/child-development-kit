@@ -36,8 +36,8 @@ const promptQuestions = {
 };
 
 function adjustFilepaths (course, cb) {
-    course.info.originalFilepath = path.join('.', course.info.fileName);
-    course.info.unzippedFilepath = path.join('.', course.info.fileName.split('.zip')[0]);
+    course.info.originalFilepath = path.join('.', 'D2LOriginal', course.info.fileName);
+    course.info.unzippedFilepath = path.join('.', 'D2LOriginal', course.info.fileName.split('.zip')[0]);
     cb(null, course);
 }
 
