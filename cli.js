@@ -43,8 +43,8 @@ function adjustFilepaths (course, cb) {
     cb(null, course);
 }
 
-exports.updateD2L = updateD2L();
-// exports.updateCanvas = updateCanvas();
+exports.updateD2L = updateD2L;
+// exports.updateCanvas = updateCanvas;
 exports.testEnv = (childModule, finalCallback) => {
 
     prompt.get(promptQuestions, (err, result) => {
