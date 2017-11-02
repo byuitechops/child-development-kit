@@ -47,7 +47,6 @@ exports.updateD2L = updateD2L();
 // exports.updateCanvas = updateCanvas();
 exports.testEnv = (childModule, finalCallback) => {
 
-    prompt.start();
     prompt.get(promptQuestions, (err, result) => {
         /* If the user said PreImport */
         if (result.gauntletType === 'pre') {
