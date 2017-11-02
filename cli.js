@@ -7,7 +7,7 @@ const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
 const updateD2L = require('./updateD2LGauntlets');
-const updateCanvas = require('./updateCanvasGauntlets');
+// const updateCanvas = require('./updateCanvasGauntlets');
 
 prompt.message = chalk.greenBright('Test Environment: ');
 prompt.delimiter = '';
@@ -44,7 +44,7 @@ function adjustFilepaths (course, cb) {
 }
 
 exports.updateD2L = updateD2L();
-exports.updateCanvas = updateCanvas();
+// exports.updateCanvas = updateCanvas();
 exports.testEnv = (childModule, finalCallback) => {
 
     prompt.start();
