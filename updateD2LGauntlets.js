@@ -26,6 +26,7 @@ module.exports = () => {
                     callback(null);
                 });
             }, error => {
+                if (error) console.error(error);
                 console.log(chalk.cyanBright(`Your local Gauntlet Test Courses are now up-to-date.`));
             });
         });
