@@ -6,6 +6,7 @@ const createCourseObj = require('create-course-object');
 const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
+const standardTests = require('child-module-standard-tests');
 const updateD2L = require('./updateD2LGauntlets');
 // const updateCanvas = require('./updateCanvasGauntlets');
 
@@ -64,7 +65,10 @@ exports.testEnv = (childModule, finalCallback) => {
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
+                verify,
                 adjustFilepaths,
+                verify,
+                standardTests,
                 verify,
                 indexCourse,
                 verify,

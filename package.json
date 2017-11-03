@@ -20,6 +20,7 @@
         "async": "^2.5.0",
         "canvas-wrapper": "github:byuitechops/Canvas-wrapper",
         "chalk": "^2.3.0",
+        "child-module-standard-tests": "github:byuitechops/child-module-standard-tests",
         "course-object-verifier": "github:byuitechops/course-object-verifier",
         "create-course-object": "github:byuitechops/create-course-object",
         "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
