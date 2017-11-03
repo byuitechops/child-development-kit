@@ -35,7 +35,7 @@ const promptQuestions = {
     }
 };
 
-function adjustFilepaths (course, cb) {
+var adjustFilepaths = function(course, cb) {
     course.info.originalFilepath = path.join('.', 'D2LOriginal', course.info.fileName);
     course.info.unzippedFilepath = path.join('.', 'D2LProcessing', course.info.fileName.split('.zip')[0]);
     cb(null, course);
@@ -62,7 +62,7 @@ exports.testEnv = (childModule, finalCallback) => {
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
-                adjustFilePaths,
+                adjustFilepaths,
                 verify,
                 indexCourse,
                 verify,
