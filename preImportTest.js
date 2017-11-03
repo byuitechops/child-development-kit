@@ -2,6 +2,7 @@ const createCourseObj = require('create-course-object');
 const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
+const standardTests = require('./Tests/standardTests.js');
 
 module.exports = (filepath, stepCallback) => {
     console.log(filepath);
@@ -19,6 +20,8 @@ module.exports = (filepath, stepCallback) => {
         createCourseObj,
         verify,
         indexCourse,
+        verify,
+        standardTests,
         verify,
         childModule,
         verify
