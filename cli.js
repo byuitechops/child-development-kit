@@ -3,6 +3,7 @@ const prompt = require('prompt');
 const chalk = require('chalk');
 const path = require('path');
 const createCourseObj = require('create-course-object');
+const setFilePaths = require('set-file-paths');
 const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
@@ -62,7 +63,7 @@ exports.testEnv = (childModule, finalCallback) => {
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
-                adjustFilepaths,
+                setFilePaths,
                 verify,
                 indexCourse,
                 verify,
