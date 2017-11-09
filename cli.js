@@ -47,7 +47,7 @@ var adjustFilepaths = function (course, cb) {
 
 exports.updateD2L = updateD2L;
 // exports.updateCanvas = updateCanvas;
-exports.preImportEnv = (childModule, finalCallback) => {
+exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
 
         function buildCourse(item, mapCallback) {
             var gauntletPath = path.join('.', item);
@@ -79,8 +79,17 @@ exports.preImportEnv = (childModule, finalCallback) => {
             'deleteCourse': false,
             'useDownloader': false
         };
-        asyncLib.map(gauntlets, buildCourse, (err, allCourses) => {
-            if (err) finalCallback(err, allCourses);
-            else finalCallback(null, allCourses);
-        });
+
+        if (gauntletNum != -1) {
+            buildCourse(gauntlets[gauntletNum], (err, course) => {
+                if (err) finalCallback(err, allCourses);
+                else finalCallback(null, allCourses);
+            });
+        } else {
+            asyncLib.map(gauntlets, buildCourse, (err, allCourses) => {
+                if (err) finalCallback(err, allCourses);
+                else finalCallback(null, allCourses);
+            });
+        }
+
 }
