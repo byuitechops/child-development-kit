@@ -53,7 +53,8 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
             var gauntletPath = path.join('.', item);
             asyncLib.waterfall([
                 (callback) => {
-                    console.log(`\n\nBeginning ${item.split('.zip')}`);
+                    console.log(`---`);
+                    console.log(`Beginning ${item.split('.zip')}`);
                     callback();
                 },
                 asyncLib.constant(gauntletPath, settings),
