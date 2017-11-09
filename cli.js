@@ -52,7 +52,9 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
         function buildCourse(item, mapCallback) {
             var gauntletPath = path.join('.', item);
             asyncLib.waterfall([
-                () => console.log(`\nBeginning ${item}`),
+                (callback) => {
+                    console.log(`\nBeginning ${item}`);
+                    callback(),
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
                 verify,
