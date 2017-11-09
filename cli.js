@@ -67,6 +67,7 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
                 if (waterErr) {
                     console.error(waterErr,);
                     console.log('\nYou may need to update your gauntlets with:\n\n \t"npm start -- update d2l"\n');
+                    mapCallback(waterErr, gauntletPath);
                 }
                 else {
                     mapCallback(null, resultCourse);
@@ -89,7 +90,7 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
                 else finalCallback(null, course);
             });
         } else {
-            asyncLib.map(gauntlets, buildCourse, (err, allCourses) => {
+            asyncLib.mapSeries(gauntlets, buildCourse, (err, allCourses) => {
                 if (err) finalCallback(err, allCourses);
                 else finalCallback(null, allCourses);
             });
