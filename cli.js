@@ -54,7 +54,7 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
             asyncLib.waterfall([
                 (callback) => {
                     console.log(`---`);
-                    console.log(`Building course:  ${item.split('.zip')}`);
+                    console.log(`Building course:  ${item.split('.zip')[0]}`);
                     callback();
                 },
                 asyncLib.constant(gauntletPath, settings),
