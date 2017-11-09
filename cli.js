@@ -54,7 +54,8 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
             asyncLib.waterfall([
                 (callback) => {
                     console.log(`\nBeginning ${item}`);
-                    callback(),
+                    callback()
+                },
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
                 verify,
