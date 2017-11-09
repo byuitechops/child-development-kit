@@ -64,7 +64,7 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
                 childModule,
                 verify
             ], (waterErr, resultCourse) => {
-                if (waterErr) console.error(waterErr);
+                if (waterErr) console.error(waterErr, '\nYou may need to update your gauntlets with:\n\n "npm start -- update d2l"\n');
                 else {
                     mapCallback(null, resultCourse);
                 }
