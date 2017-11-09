@@ -49,7 +49,8 @@ exports.updateD2L = updateD2L;
 // exports.updateCanvas = updateCanvas;
 exports.preImportEnv = (childModule, finalCallback) => {
 
-        function buildCourse(mapCallback) {
+        function buildCourse(item, mapCallback) {
+            var gauntletPath = path.join('.', item);
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
@@ -70,7 +71,6 @@ exports.preImportEnv = (childModule, finalCallback) => {
             });
         }
 
-        var gauntletPath = path.join('.', gauntlets[result.gauntletNumber]);
         const settings = {
             'debug': true,
             'readAll': true,
