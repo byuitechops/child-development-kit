@@ -53,8 +53,8 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
             var gauntletPath = path.join('.', item);
             asyncLib.waterfall([
                 (callback) => {
-                    console.log(`\nBeginning ${item}`);
-                    callback()
+                    console.log(`\n\nBeginning ${item.split('.zip')}`);
+                    callback();
                 },
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
@@ -69,7 +69,7 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
                 verify
             ], (waterErr, resultCourse) => {
                 if (waterErr) {
-                    console.error(waterErr,);
+                    console.error(waterErr);
                     console.log('\nYou may need to update your gauntlets with:\n\n \t"npm start -- update d2l"\n');
                     mapCallback(waterErr, gauntletPath);
                 }
