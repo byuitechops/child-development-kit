@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 const prompt = require('prompt');
 const chalk = require('chalk');
 const path = require('path');
@@ -36,7 +37,7 @@ const promptQuestions = {
     }
 };
 
-var adjustFilepaths = function(course, cb) {
+var adjustFilepaths = function (course, cb) {
     course.addModuleReport('adjustFilepaths');
     course.info.originalFilepath = path.join('.', 'D2LOriginal', course.info.fileName);
     course.info.unzippedFilepath = path.join('.', 'D2LProcessing', course.info.fileName.split('.zip')[0]);
@@ -46,22 +47,9 @@ var adjustFilepaths = function(course, cb) {
 
 exports.updateD2L = updateD2L;
 // exports.updateCanvas = updateCanvas;
-exports.testEnv = (childModule, finalCallback) => {
+exports.preImportEnv = (childModule, finalCallback) => {
 
-    prompt.get(promptQuestions, (err, result) => {
-        /* If the user said PreImport */
-        if (result.gauntletType === 'pre') {
-
-            var gauntletPath = path.join('.', gauntlets[result.gauntletNumber]);
-            const settings = {
-                'debug': true,
-                'readAll': true,
-                'online': true,
-                'keepFiles': true,
-                'deleteCourse': false,
-                'useDownloader': false
-            };
-
+        function buildCourse(mapCallback) {
             asyncLib.waterfall([
                 asyncLib.constant(gauntletPath, settings),
                 createCourseObj,
@@ -77,13 +65,22 @@ exports.testEnv = (childModule, finalCallback) => {
             ], (waterErr, resultCourse) => {
                 if (waterErr) console.error(waterErr);
                 else {
-                    finalCallback(null, resultCourse);
+                    mapCallback(null, resultCourse);
                 }
             });
-
-        /* If the user said PostImport */
-        } else {
-
         }
-    });
+
+        var gauntletPath = path.join('.', gauntlets[result.gauntletNumber]);
+        const settings = {
+            'debug': true,
+            'readAll': true,
+            'online': true,
+            'keepFiles': true,
+            'deleteCourse': false,
+            'useDownloader': false
+        };
+        asyncLib.map(gauntlets, buildCourse, (err, allCourses) => {
+            if (err) finalCallback(err, allCourses);
+            else finalCallback(null, allCourses);
+        });
 }
