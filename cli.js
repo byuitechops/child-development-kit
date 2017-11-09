@@ -82,8 +82,8 @@ exports.preImportEnv = (childModule, gauntletNum, finalCallback) => {
 
         if (gauntletNum != -1) {
             buildCourse(gauntlets[gauntletNum], (err, course) => {
-                if (err) finalCallback(err, allCourses);
-                else finalCallback(null, allCourses);
+                if (err) finalCallback(err, course);
+                else finalCallback(null, course);
             });
         } else {
             asyncLib.map(gauntlets, buildCourse, (err, allCourses) => {
