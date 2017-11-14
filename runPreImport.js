@@ -7,6 +7,13 @@ const asyncLib = require('async');
 const verify = require('course-object-verifier');
 const standardTests = require('child-module-standard-tests');
 
+const gauntlets = [
+    'Conversion Test Gauntlet 1.zip',
+    'Conversion Test Gauntlet 2.zip',
+    'Conversion Test Gauntlet 3.zip',
+    'Conversion Test Gauntlet 4.zip'
+];
+
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
         function buildCourse(item, mapCallback) {
