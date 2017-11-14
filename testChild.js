@@ -1,7 +1,7 @@
-const childModule = require('./main.js');
+const childModule = require('../../main.js');
 const preImportEnv = require('child-development-kit').preImportEnv;
 const updateD2L = require('child-development-kit').updateD2L;
-const runTest = require('./Tests/childTests.js');
+const runTest = require('../../Tests/childTests.js');
 const asyncLib = require('async');
 // const updateCanvas = require('child-development-kit').updateCanvas;
 

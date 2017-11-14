@@ -1,11 +1,4 @@
-const path = require('path');
-const fs = require('fs');
-fs.readdir(path.resolve('.'), (err, files) => {
-    console.log(files);
-
-
-console.log(path.resolve('.'));
-const childModule = require('./main.js');
+const childModule = require('../../main.js');
 const preImportEnv = require('child-development-kit').preImportEnv;
 const updateD2L = require('child-development-kit').updateD2L;
 // const updateCanvas = require('child-development-kit').updateCanvas;
@@ -37,4 +30,3 @@ if (process.argv.includes('update')) {
         }
     });
 }
-});
