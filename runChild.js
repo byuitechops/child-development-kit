@@ -1,6 +1,6 @@
 const childModule = require('./main.js');
 const preImportEnv = require('./runPreImport.js');
-const updateD2L = require('child-development-kit').updateD2L;
+const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
 var gauntletNum = 1;
 
