@@ -14,6 +14,14 @@ const gauntlets = [
     'Conversion Test Gauntlet 4.zip'
 ];
 
+var adjustFilepaths = function (course, cb) {
+    course.addModuleReport('adjustFilepaths');
+    course.info.originalFilepath = path.join('.', 'D2LOriginal', course.info.fileName);
+    course.info.unzippedFilepath = path.join('.', 'D2LProcessing', course.info.fileName.split('.zip')[0]);
+    course.success('adjustFilepaths', 'File paths adjusted for testing.');
+    cb(null, course);
+}
+
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
         function buildCourse(item, mapCallback) {
