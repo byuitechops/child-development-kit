@@ -7,7 +7,7 @@ const asyncLib = require('async');
 
 module.exports = () => {
     /* Deletes any old gauntlet zips or files */
-    del(['./D2LOriginal/*', './D2LProcessing/*']).then(paths => {
+    del(['./node_modules/child-development-kit/D2LOriginal/*', './node_modules/child-development-kit/D2LProcessing/*']).then(paths => {
         if (paths.length > 0) {
             console.log(chalk.yellow('Outdated Zips/Files deleted:\n', paths.join('\n')));
         } else {
@@ -17,7 +17,7 @@ module.exports = () => {
         downloader(courses => {
             asyncLib.each(courses, (course, callback) => {
                 /* Unzip the gauntlet courses */
-                decompress(course.filePath, `./D2LProcessing/${course.name}`)
+                decompress(course.filePath, `./node_modules/child-development-kit/D2LProcessing/${course.name}`)
                 .then((files) => {
                     console.log(chalk.blueBright(`${course.name} successfully unzipped`));
                     callback(null);

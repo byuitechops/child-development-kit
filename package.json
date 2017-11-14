@@ -17,7 +17,7 @@
     },
     "homepage": "https://github.com/byuitechops/child-development-kit#readme",
     "dependencies": {
-        "async": "^2.5.0",
+        "async": "^2.6.0",
         "canvas-wrapper": "github:byuitechops/Canvas-wrapper",
         "chalk": "^2.3.0",
         "child-module-standard-tests": "github:byuitechops/child-module-standard-tests",
