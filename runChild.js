@@ -2,7 +2,7 @@ const childModule = require('./main.js');
 const preImportEnv = require('./runPreImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
-var gauntletNum = 1;
+var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
     if (process.argv.includes('d2l')) {
