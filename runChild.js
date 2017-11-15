@@ -1,4 +1,4 @@
-const childModule = require('./main.js');
+const childModule = require('../../main.js');
 const runPreImport = require('./runPreImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
@@ -23,7 +23,6 @@ if (process.argv.includes('update')) {
         }
     }
     console.log('Running your child module on Gauntlet ' + gauntletNum);
-    console.log(childModule.toString());
     runPreImport(childModule, gauntletNum, (error, allCourses) => {
         if (error) console.error(error);
         else {
