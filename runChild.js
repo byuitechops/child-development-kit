@@ -1,3 +1,7 @@
+const path = require('path');
+
+console.log(path.resolve('.', './main.js'));
+
 const childModule = require('../../main.js');
 const runPreImport = require('./runPreImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
