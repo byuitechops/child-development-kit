@@ -1,5 +1,5 @@
 const childModule = require('./main.js');
-const preImportEnv = require('./runPreImport.js');
+const runPreImport = require('./runPreImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
 var gauntletNum = 0;
@@ -22,8 +22,9 @@ if (process.argv.includes('update')) {
             console.log('Invalid gauntlet number.');
         }
     }
-    console.log('Running your child module on Gauntlet ' + gauntletNum)
-    preImportEnv(childModule, gauntletNum, (error, allCourses) => {
+    console.log('Running your child module on Gauntlet ' + gauntletNum);
+    console.log(childModule.toString());
+    runPreImport(childModule, gauntletNum, (error, allCourses) => {
         if (error) console.error(error);
         else {
             console.log('\nTrial run complete\n');
