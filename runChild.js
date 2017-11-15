@@ -2,7 +2,7 @@ const path = require('path');
 
 console.log(path.resolve('.', './main.js'));
 
-const childModule = require('../../main.js');
+const childModule = require(path.resolve('.', './main.js'));
 const runPreImport = require('./runPreImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
