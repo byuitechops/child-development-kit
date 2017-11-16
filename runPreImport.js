@@ -1,4 +1,3 @@
-const prompt = require('prompt');
 const chalk = require('chalk');
 const path = require('path');
 const createCourseObj = require('create-course-object');
