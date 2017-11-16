@@ -24,8 +24,6 @@ var adjustFilepaths = function (course, cb) {
 
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
-        console.log(childModule);
-
         function buildCourse(item, mapCallback) {
             var gauntletPath = path.join('.', item);
             asyncLib.waterfall([

@@ -1,9 +1,7 @@
 const path = require('path');
-
-console.log(path.resolve('.', './main.js'));
-
 const childModule = require(path.resolve('.', './main.js'));
 const runPreImport = require('./runPreImport.js');
+const runPostImport = require('./runPostImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 // const updateCanvas = require('child-development-kit').updateCanvas;
 var gauntletNum = 0;
@@ -27,7 +25,14 @@ if (process.argv.includes('update')) {
         }
     }
     console.log('Running your child module on Gauntlet ' + gauntletNum);
-    runPreImport(childModule, gauntletNum, (error, allCourses) => {
+    /* DETERMINE IF POST OR PRE, THEN RUN RIGHT ONE */
+    // runPreImport(childModule, gauntletNum, (error, allCourses) => {
+    //     if (error) console.error(error);
+    //     else {
+    //         console.log('\nTrial run complete\n');
+    //     }
+    // });
+    runPostImport(childModule, gauntletNum, (error, allCourses) => {
         if (error) console.error(error);
         else {
             console.log('\nTrial run complete\n');
