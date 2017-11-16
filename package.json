@@ -18,7 +18,7 @@
     "homepage": "https://github.com/byuitechops/child-development-kit#readme",
     "dependencies": {
         "async": "^2.6.0",
-        "canvas-wrapper": "https://github.com/byuitechops/Canvas-wrapper",
+        "canvas-wrapper": "git+https://github.com/byuitechops/Canvas-wrapper.git",
         "chalk": "^2.3.0",
         "child-module-standard-tests": "github:byuitechops/child-module-standard-tests",
         "copy-a-canvas-course": "github:byuitechops/copy-a-canvas-course",
