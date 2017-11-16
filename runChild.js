@@ -3,15 +3,14 @@ const childModule = require(path.resolve('.', './main.js'));
 const runPreImport = require('./runPreImport.js');
 const runPostImport = require('./runPostImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
-// const updateCanvas = require('child-development-kit').updateCanvas;
+const updateCanvas = require('./updateCanvasGauntlets.js');
 var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
     if (process.argv.includes('d2l')) {
         updateD2L();
     } else if (process.argv.includes('canvas')) {
-        console.log('Canvas updating not implemented yet');
-        // updateCanvas();
+        updateCanvas();
     } else {
         console.log('Please specify "d2l" or "canvas" when updating.');
     }
