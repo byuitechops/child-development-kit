@@ -4,6 +4,7 @@ const runPreImport = require('./runPreImport.js');
 const runPostImport = require('./runPostImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 const updateCanvas = require('./updateCanvasGauntlets.js');
+const { type } = require('../../package.json');
 var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
@@ -24,17 +25,21 @@ if (process.argv.includes('update')) {
         }
     }
     console.log('Running your child module on Gauntlet ' + gauntletNum);
-    /* DETERMINE IF POST OR PRE, THEN RUN RIGHT ONE */
-    // runPreImport(childModule, gauntletNum, (error, allCourses) => {
-    //     if (error) console.error(error);
-    //     else {
-    //         console.log('\nTrial run complete\n');
-    //     }
-    // });
-    runPostImport(childModule, gauntletNum, (error, allCourses) => {
-        if (error) console.error(error);
-        else {
-            console.log('\nTrial run complete\n');
-        }
-    });
+    if (type === 'preImport') {
+        runPreImport(childModule, gauntletNum, (error, allCourses) => {
+            if (error) console.error(error);
+            else {
+                console.log('\nTrial run complete\n');
+            }
+        });
+    } else if (type === 'postImport') {
+        runPostImport(childModule, gauntletNum, (error, allCourses) => {
+            if (error) console.error(error);
+            else {
+                console.log('\nTrial run complete\n');
+            }
+        });
+    } else {
+        console.log('Incorrect type set on child module package.json. Please specify "preImport" or "postImport"');
+    }
 }
