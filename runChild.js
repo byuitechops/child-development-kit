@@ -25,7 +25,7 @@ if (process.argv.includes('update')) {
         }
     }
     console.log('Running your child module on Gauntlet ' + gauntletNum);
-    if (type === 'preImport') {
+    if (childType === 'preImport') {
         runPreImport(childModule, gauntletNum, (error, allCourses) => {
             if (error) console.error(error);
             else {
