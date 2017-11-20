@@ -4,7 +4,7 @@ const runPreImport = require('./runPreImport.js');
 const runPostImport = require('./runPostImport.js');
 const updateD2L = require('./updateD2LGauntlets.js');
 const updateCanvas = require('./updateCanvasGauntlets.js');
-const { type } = require('../../package.json');
+const { childType } = require('../../package.json');
 var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
@@ -32,7 +32,7 @@ if (process.argv.includes('update')) {
                 console.log('\nTrial run complete\n');
             }
         });
-    } else if (type === 'postImport') {
+    } else if (childType === 'postImport') {
         runPostImport(childModule, gauntletNum, (error, allCourses) => {
             if (error) console.error(error);
             else {
