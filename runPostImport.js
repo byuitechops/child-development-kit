@@ -35,9 +35,13 @@ module.exports = (childModule, gauntletNum, stepCallback) => {
                 canvasGauntlets = JSON.parse(d);
                 // Copy the course
                 copyCourse(canvasGauntlets[`Gauntlet ${gauntletNum + 1}`], 14, (err, newCourse) => {
-                    if (err) callback(err, newCourse);
-                    canvasOU = newCourse.id;
-                    else callback(null, newCourse.id);
+                    if (err) {
+                        callback(err, newCourse);
+                    }
+                    else {
+                        canvasOU = newCourse.id;
+                        callback(null, newCourse.id);
+                    }
                 });
             });
         }).on('error', (e) => {
