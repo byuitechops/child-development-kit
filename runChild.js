@@ -1,22 +1,14 @@
 const path = require('path');
 const childModule = require(path.resolve('.', './main.js'));
-const runPreImport = require('./runPreImport.js');
-const runPostImport = require('./runPostImport.js');
+const preImportSetup = require('./preImportSetup.js');
+const postImportSetup = require('./postImportSetup.js')
 const updateD2L = require('./updateD2LGauntlets.js');
-const updateCanvas = require('./updateCanvasGauntlets.js');
-const { childType } = require('../../package.json');
+
+const { childType } = require(path.resolve('.', 'package.json'));
 var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
-    if (process.argv.includes('d2l')) {
-        updateD2L();
-    } else if (process.argv.includes('canvas')) {
-        updateCanvas();
-    } else {
-        console.log('Please specify "d2l" or "canvas" when updating.');
-    }
-
-/* Launch the module */
+    updateD2L();
 } else {
     if (process.argv.includes('gauntlet')) {
         gauntletNum = process.argv[process.argv.indexOf('gauntlet') + 1];
@@ -24,22 +16,29 @@ if (process.argv.includes('update')) {
             console.log('Invalid gauntlet number.');
         }
     }
-    console.log('Running your child module on Gauntlet ' + gauntletNum);
-    if (childType === 'preImport') {
-        runPreImport(childModule, gauntletNum, (error, allCourses) => {
-            if (error) console.error(error);
-            else {
-                console.log('\nTrial run complete\n');
-            }
-        });
-    } else if (childType === 'postImport') {
-        runPostImport(childModule, gauntletNum, (error, allCourses) => {
-            if (error) console.error(error);
-            else {
-                console.log('\nTrial run complete\n');
-            }
-        });
-    } else {
-        console.log('Incorrect type set on child module package.json. Please specify "preImport" or "postImport"');
-    }
+
+    preImportSetup(childModule, gauntletNum, (error, course) => {
+        if (childType != 'postImport' && childType != 'preImport') {
+            console.log(
+                'Incorrect type set on child module package.json. Please specify "preImport" or "postImport"');
+            return;
+        }
+        if (childType === 'postImport') {
+            // Run runPostImport => set course.info.canvasOU => run child module
+            postImportSetup(gauntletNum, (postErr, courseID) => {
+                if (postErr) console.log(postErr);
+                else {
+                    course.info.canvasOU = courseID;
+                    childModule(course, (err, resultCourse) => {
+                        console.log('Complete');
+                    });
+                }
+            });
+        } else {
+            childModule(course, (err, resultCourse) => {
+                console.log('Complete');
+            });
+            // run child module
+        }
+    });
 }
