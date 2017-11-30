@@ -24,7 +24,7 @@
         "copy-a-canvas-course": "github:byuitechops/copy-a-canvas-course",
         "course-object-verifier": "github:byuitechops/course-object-verifier",
         "create-course-object": "github:byuitechops/create-course-object",
-        "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
+        "d2l-course-downloader": "github:byuitechops/d2l-course-downloader#reformatCLI",
         "decompress": "^4.2.0",
         "del": "^3.0.0",
         "fs": "0.0.1-security",
