@@ -7,7 +7,7 @@ const updateD2L = require('./updateD2LGauntlets.js');
 const {
     childType
 } = require(path.resolve('.', 'package.json'));
-var gauntletNum = 0;
+var gauntletNum = 1;
 
 if (process.argv.includes('update')) {
     updateD2L();
