@@ -28,7 +28,7 @@ function runTests(testObject, callback) {
                             console.log(
                                 chalk.greenBright(`Setup and your Child Module have ran. Running tests for Gauntlet ${testObject.gauntlet}.`)
                             );
-                            testObject.tests(course, callback);
+                            testObject.tests(resultCourse, callback);
                         });
                     }
                 });
@@ -37,7 +37,7 @@ function runTests(testObject, callback) {
                     console.log(
                         chalk.greenBright(`Setup and your Child Module have ran. Running tests for Gauntlet ${testObject.gauntlet}.`)
                     );
-                    testObject.tests(course, callback);
+                    testObject.tests(resultCourse, callback);
                 });
             }
         }
