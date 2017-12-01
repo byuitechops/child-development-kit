@@ -28,16 +28,19 @@ module.exports = () => {
             if (error) console.error(error);
 
             else {
-                decompress(course.filePath, `./node_modules/child-development-kit/D2LProcessing/${course.name}`)
-                .then((files) => {
-                    console.log(chalk.blueBright(`${course.name} successfully unzipped`));
-                    console.log(chalk.cyanBright(
-                        `Your local Gauntlet Test Courses are now up-to-date.`));
-                    callback(null);
-                }, (promiseError) => {
-                    if (promiseError) console.error(promiseError);
-                    callback(null);
+                courses.forEach(course => {
+                    decompress(course.filePath, `./node_modules/child-development-kit/D2LProcessing/${course.name}`)
+                    .then((files) => {
+                        console.log(chalk.blueBright(`${course.name} successfully unzipped`));
+                        callback(null);
+                    }, (promiseError) => {
+                        if (promiseError) console.error(promiseError);
+                        callback(null);
+                    });
                 });
+
+                console.log(chalk.cyanBright(
+                    `Your local Gauntlet Test Courses are now up-to-date.`));
             }
         });
     });
