@@ -1,4 +1,5 @@
 const path = require('path');
+const chalk = require('chalk');
 const childModule = require(path.resolve('.', './main.js'));
 const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js')
@@ -15,7 +16,8 @@ if (process.argv.includes('update')) {
     if (process.argv.includes('gauntlet')) {
         gauntletNum = +process.argv[process.argv.indexOf('gauntlet') + 1];
         if (gauntletNum > 4 || gauntletNum < 1) {
-            console.log('Invalid gauntlet number.');
+            console.log(chalk.red('Invalid gauntlet number.'));
+            return;
         }
     }
 
