@@ -13,7 +13,7 @@ if (process.argv.includes('update')) {
     updateD2L();
 } else {
     if (process.argv.includes('gauntlet')) {
-        gauntletNum = process.argv[process.argv.indexOf('gauntlet') + 1] + 1;
+        gauntletNum = (process.argv[process.argv.indexOf('gauntlet') + 1] + 1) + '';
         if (gauntletNum > 4 || gauntletNum < 1) {
             console.log('Invalid gauntlet number.');
         }
