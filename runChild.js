@@ -38,13 +38,13 @@ if (process.argv.includes('update')) {
                     else {
                         course.info.canvasOU = courseID;
                         childModule(course, (err, resultCourse) => {
-                            console.log('Complete');
+                            console.log(chalk.green('Process complete.'));
                         });
                     }
                 });
             } else {
                 childModule(course, (err, resultCourse) => {
-                    console.log('Complete');
+                    console.log(chalk.green('Process complete.'));
                 });
             }
         }
