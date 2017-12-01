@@ -4,6 +4,7 @@ const postImportSetup = require('./postImportSetup.js');
 const childTests = require('../../Tests/childTests.js');
 const asyncLib = require('async');
 const path = require('path');
+const chalk = require('chalk');
 const { childType } = require(path.resolve('.', 'package.json'));
 
 function runTests(testObject, callback) {
