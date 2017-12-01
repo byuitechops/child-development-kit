@@ -23,8 +23,7 @@ if (process.argv.includes('update')) {
         if (error) {
             console.error(chalk.red(error));
             console.log(`\nYou may need to update your D2L gauntlets with:\n\n \t${chalk.blueBright("npm start -- update")}\n`);
-        };
-        else {
+        } else {
             if (childType != 'postImport' && childType != 'preImport') {
                 console.log(
                     'Incorrect type set on child module package.json. Please specify "preImport" or "postImport"'
