@@ -1,6 +1,6 @@
 const childModule = require('../../main.js');
-const preImportSetup = require('./node_modules/child-development-kit/preImportSetup.js');
-const postImportSetup = require('./node_modules/child-development-kit/postImportSetup.js');
+const preImportSetup = require('./preImportSetup.js');
+const postImportSetup = require('./postImportSetup.js');
 const childTests = require('../../Tests/childTests.js');
 const asyncLib = require('async');
 
