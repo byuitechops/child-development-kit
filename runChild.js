@@ -16,14 +16,14 @@ if (process.argv.includes('update')) {
     if (process.argv.includes('gauntlet')) {
         gauntletNum = +process.argv[process.argv.indexOf('gauntlet') + 1];
         if (gauntletNum > 4 || gauntletNum < 1) {
-            console.log(chalk.red('Invalid gauntlet number.'));
+            console.log(chalk.redBright('Invalid gauntlet number.'));
             return;
         }
     }
 
     preImportSetup(childModule, gauntletNum, (error, course) => {
         if (error) {
-            console.error(chalk.red(error));
+            console.error(chalk.redBright(error));
             console.log(`\nYou may need to update your D2L gauntlets with:\n\n \t${chalk.blueBright("npm start -- update")}\n`);
         } else {
             if (childType != 'postImport' && childType != 'preImport') {
@@ -38,13 +38,13 @@ if (process.argv.includes('update')) {
                     else {
                         course.info.canvasOU = courseID;
                         childModule(course, (err, resultCourse) => {
-                            console.log(chalk.green('Process complete.'));
+                            console.log(chalk.greenBright('Process complete.'));
                         });
                     }
                 });
             } else {
                 childModule(course, (err, resultCourse) => {
-                    console.log(chalk.green('Process complete.'));
+                    console.log(chalk.greenBright('Process complete.'));
                 });
             }
         }

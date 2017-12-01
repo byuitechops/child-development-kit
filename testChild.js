@@ -1,28 +1,52 @@
 const childModule = require('../../main.js');
-const preImportEnv = require('child-development-kit').preImportEnv;
-const updateD2L = require('child-development-kit').updateD2L;
-const runTest = require('../../Tests/childTests.js');
+const preImportSetup = require('./node_modules/child-development-kit/preImportSetup.js');
+const postImportSetup = require('./node_modules/child-development-kit/postImportSetup.js');
+const childTests = require('../../Tests/childTests.js');
 const asyncLib = require('async');
-// const updateCanvas = require('child-development-kit').updateCanvas;
 
-/* Run Tests on Gauntlet Courses */
-preImportEnv(childModule, -1, (error, allCourses) => {
-    if (error) console.error(error);
-    else {
-        asyncLib.eachOf(allCourses, (gauntlet, i, callback) => {
-            runTest[`gauntlet${i + 1}`](gauntlet,
-                (err, course) => {
-                    if (err) callback(err);
+/* Test object:
+    {
+        gauntlet: 1 // Always a number 1 - 4
+        tests: function(course, callback) // contains all the tests
+    }
+*/
+function runTests(testObject, callback) {
+    preImportSetup(childModule, testObject.gauntlet, (error, course) => {
+        if (error) {
+            console.error(chalk.redBright(error));
+            console.log(`\nYou may need to update your D2L gauntlets with:\n\n \t${chalk.blueBright("npm start -- update")}\n`);
+        } else {
+            if (childType != 'postImport' && childType != 'preImport') {
+                console.log(
+                    'Incorrect type set on child module package.json. Please specify "preImport" or "postImport"'
+                );
+                return;
+            }
+            if (childType === 'postImport') {
+                postImportSetup(testObject.gauntlet, (postErr, courseID) => {
+                    if (postErr) console.log(postErr);
                     else {
-                        console.log(`Gauntlet ${i + 1} Tests Complete`);
-                        callback(null);
+                        course.info.canvasOU = courseID;
+                        childModule(course, (err, resultCourse) => {
+                            console.log(
+                                chalk.greenBright(`Setup and your Child Module have ran. Running tests for Gauntlet ${testObject.gauntlet}.`)
+                            );
+                            testObject.tests(course, callback);
+                        });
                     }
                 });
-        }, eachErr => {
-            if (eachErr) console.error(eachErr);
-            else {
-                console.log('All gauntlet tests are complete.');
+            } else {
+                childModule(course, (err, resultCourse) => {
+                    console.log(
+                        chalk.greenBright(`Setup and your Child Module have ran. Running tests for Gauntlet ${testObject.gauntlet}.`)
+                    );
+                    testObject.tests(course, callback);
+                });
             }
-        });
-    }
+        }
+    });
+}
+
+asyncLib.series(childTests, runTests, err => {
+    console.log('All tests are complete.');
 });
