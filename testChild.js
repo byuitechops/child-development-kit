@@ -47,6 +47,6 @@ function runTests(testObject, callback) {
     });
 }
 
-asyncLib.series(childTests, runTests, err => {
+asyncLib.eachSeries(childTests, runTests, err => {
     console.log('All tests are complete.');
 });
