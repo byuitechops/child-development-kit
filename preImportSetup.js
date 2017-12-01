@@ -42,8 +42,6 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
                 verify
             ], (waterErr, resultCourse) => {
                 if (waterErr) {
-                    console.error(waterErr);
-                    console.log(`\nYou may need to update your D2L gauntlets with:\n\n \t${chalk.blueBright("npm start -- update")}\n`);
                     mapCallback(waterErr, gauntletPath);
                 }
                 else {

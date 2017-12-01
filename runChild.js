@@ -20,7 +20,10 @@ if (process.argv.includes('update')) {
     }
 
     preImportSetup(childModule, gauntletNum, (error, course) => {
-        if (error) console.error(error);
+        if (error) {
+            console.error(chalk.red(error));
+            console.log(`\nYou may need to update your D2L gauntlets with:\n\n \t${chalk.blueBright("npm start -- update")}\n`);
+        };
         else {
             if (childType != 'postImport' && childType != 'preImport') {
                 console.log(
