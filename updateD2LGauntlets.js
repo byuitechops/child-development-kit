@@ -26,8 +26,19 @@ module.exports = () => {
         /* Download all of the gauntlet courses */
         downloader(downloadData, (error, courses) => {
             if (error) console.error(error);
-            console.log(chalk.cyanBright(
-                `Your local Gauntlet Test Courses are now up-to-date.`));
+
+            else {
+                decompress(course.filePath, `./node_modules/child-development-kit/D2LProcessing/${course.name}`)
+                .then((files) => {
+                    console.log(chalk.blueBright(`${course.name} successfully unzipped`));
+                    console.log(chalk.cyanBright(
+                        `Your local Gauntlet Test Courses are now up-to-date.`));
+                    callback(null);
+                }, (promiseError) => {
+                    if (promiseError) console.error(promiseError);
+                    callback(null);
+                });
+            }
         });
     });
 }
