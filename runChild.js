@@ -4,10 +4,7 @@ const childModule = require(path.resolve('.', './main.js'));
 const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js')
 const updateD2L = require('./updateD2LGauntlets.js');
-
-const {
-    childType
-} = require(path.resolve('.', 'package.json'));
+const { childType } = require(path.resolve('.', 'package.json'));
 var gauntletNum = 1;
 
 if (process.argv.includes('update')) {

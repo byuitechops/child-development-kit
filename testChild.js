@@ -3,13 +3,8 @@ const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js');
 const childTests = require('../../Tests/childTests.js');
 const asyncLib = require('async');
+const { childType } = require(path.resolve('.', 'package.json'));
 
-/* Test object:
-    {
-        gauntlet: 1 // Always a number 1 - 4
-        tests: function(course, callback) // contains all the tests
-    }
-*/
 function runTests(testObject, callback) {
     preImportSetup(childModule, testObject.gauntlet, (error, course) => {
         if (error) {
