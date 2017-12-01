@@ -27,9 +27,7 @@ module.exports = () => {
         downloader(downloadData, (error, courses) => {
             if (error) {
                 console.log(error);
-                console.log(courses);
             } else {
-                console.log(courses);
                 courses.forEach(course => {
                     decompress(course.downloadLocation,
                             `./node_modules/child-development-kit/D2LProcessing/${course.name}`
