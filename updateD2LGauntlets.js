@@ -25,22 +25,22 @@ module.exports = () => {
 
         /* Download all of the gauntlet courses */
         downloader(downloadData, (error, courses) => {
-            if (error) console.error(error);
-
-            else {
+            if (error) {
+                console.log(error);
+                console.log(courses);
+            } else {
+                console.log(courses);
                 courses.forEach(course => {
-                    decompress(course.filePath, `./node_modules/child-development-kit/D2LProcessing/${course.name}`)
-                    .then((files) => {
-                        console.log(chalk.blueBright(`${course.name} successfully unzipped`));
-                        callback(null);
-                    }, (promiseError) => {
-                        if (promiseError) console.error(promiseError);
-                        callback(null);
-                    });
+                    decompress(course.downloadLocation,
+                            `./node_modules/child-development-kit/D2LProcessing/${course.name}`
+                        )
+                        .then((files) => {
+                            console.log(chalk.blueBright(
+                                `${course.name} successfully unzipped`));
+                        }, (promiseError) => {
+                            if (promiseError) console.error(chalk.red(promiseError));
+                        });
                 });
-
-                console.log(chalk.cyanBright(
-                    `Your local Gauntlet Test Courses are now up-to-date.`));
             }
         });
     });
