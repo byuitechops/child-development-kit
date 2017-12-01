@@ -59,5 +59,5 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
             'useDownloader': false
         };
 
-        buildCourse(gauntlets[gauntletNum] + 1, finalCallback);
+        buildCourse(gauntlets[gauntletNum], finalCallback);
 }
