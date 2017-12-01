@@ -19,6 +19,7 @@ module.exports = () => {
         /* Download Information */
         var downloadData = {
             ous: ['340002', '340007', '340008', '340009'],
+            domain: 'byui',
             downloadLocation: path.resolve('.', 'node_modules/child-development-kit/D2LOriginal')
         };
 

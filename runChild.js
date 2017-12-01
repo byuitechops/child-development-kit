@@ -29,7 +29,6 @@ if (process.argv.includes('update')) {
                 return;
             }
             if (childType === 'postImport') {
-                // Run runPostImport => set course.info.canvasOU => run child module
                 postImportSetup(gauntletNum, (postErr, courseID) => {
                     if (postErr) console.log(postErr);
                     else {
@@ -43,7 +42,6 @@ if (process.argv.includes('update')) {
                 childModule(course, (err, resultCourse) => {
                     console.log('Complete');
                 });
-                // run child module
             }
         }
     });
