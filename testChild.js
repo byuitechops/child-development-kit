@@ -3,6 +3,7 @@ const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js');
 const childTests = require('../../Tests/childTests.js');
 const asyncLib = require('async');
+const path = require('path');
 const { childType } = require(path.resolve('.', 'package.json'));
 
 function runTests(testObject, callback) {
