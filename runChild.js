@@ -4,7 +4,9 @@ const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js')
 const updateD2L = require('./updateD2LGauntlets.js');
 
-const { childType } = require(path.resolve('.', 'package.json'));
+const {
+    childType
+} = require(path.resolve('.', 'package.json'));
 var gauntletNum = 0;
 
 if (process.argv.includes('update')) {
@@ -18,27 +20,31 @@ if (process.argv.includes('update')) {
     }
 
     preImportSetup(childModule, gauntletNum, (error, course) => {
-        if (childType != 'postImport' && childType != 'preImport') {
-            console.log(
-                'Incorrect type set on child module package.json. Please specify "preImport" or "postImport"');
-            return;
-        }
-        if (childType === 'postImport') {
-            // Run runPostImport => set course.info.canvasOU => run child module
-            postImportSetup(gauntletNum, (postErr, courseID) => {
-                if (postErr) console.log(postErr);
-                else {
-                    course.info.canvasOU = courseID;
-                    childModule(course, (err, resultCourse) => {
-                        console.log('Complete');
-                    });
-                }
-            });
-        } else {
-            childModule(course, (err, resultCourse) => {
-                console.log('Complete');
-            });
-            // run child module
+        if (error) console.error(error);
+        else {
+            if (childType != 'postImport' && childType != 'preImport') {
+                console.log(
+                    'Incorrect type set on child module package.json. Please specify "preImport" or "postImport"'
+                );
+                return;
+            }
+            if (childType === 'postImport') {
+                // Run runPostImport => set course.info.canvasOU => run child module
+                postImportSetup(gauntletNum, (postErr, courseID) => {
+                    if (postErr) console.log(postErr);
+                    else {
+                        course.info.canvasOU = courseID;
+                        childModule(course, (err, resultCourse) => {
+                            console.log('Complete');
+                        });
+                    }
+                });
+            } else {
+                childModule(course, (err, resultCourse) => {
+                    console.log('Complete');
+                });
+                // run child module
+            }
         }
     });
 }
