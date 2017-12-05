@@ -27,6 +27,7 @@
         "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
         "decompress": "^4.2.0",
         "del": "^3.0.0",
+        "files-find-used-content": "github:byuitechops/files-find-used-content",
         "fs": "0.0.1-security",
         "index-directory": "github:byuitechops/index-directory",
         "path": "^0.12.7",
