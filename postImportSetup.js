@@ -33,7 +33,7 @@ module.exports = (gauntletNum, finalCallback) => {
             res.on('data', (d) => {
                 canvasGauntlets = JSON.parse(d);
                 // Copy the course
-                copyCourse(canvasGauntlets[`Gauntlet ${gauntletNum + 1}`], 14, (err, newCourse) => {
+                copyCourse(canvasGauntlets[`Gauntlet ${gauntletNum + 1}`], 19, (err, newCourse) => {
                     if (err) {
                         callback(err, newCourse.id);
                     }
