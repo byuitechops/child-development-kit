@@ -5,6 +5,7 @@ const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
 const standardTests = require('child-module-standard-tests');
+const findUsedFiles = require('files-find-used-content');
 
 const gauntlets = [
     'Conversion Test Gauntlet 1.zip',
@@ -39,7 +40,9 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
                 standardTests,
                 verify,
                 indexCourse,
-                verify
+                verify,
+                findUsedFiles,
+                verify,
             ], (waterErr, resultCourse) => {
                 if (waterErr) {
                     mapCallback(waterErr, gauntletPath);
