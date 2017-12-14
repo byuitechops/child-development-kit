@@ -6,6 +6,7 @@ const indexCourse = require('index-directory').conversionTool;
 const asyncLib = require('async');
 const verify = require('course-object-verifier');
 const standardTests = require('child-module-standard-tests');
+const canvas = require('canvas-wrapper');
 
 var canvasGauntlets;
 
@@ -28,22 +29,17 @@ var adjustFilepaths = function (course, cb) {
 module.exports = (gauntletNum, finalCallback) => {
 
     function copyGauntlet(callback) {
-        https.get('https://raw.githubusercontent.com/byuitechops/canvas-gauntlet-ous/master/canvas-ous.json', (res) => {
-            res.setEncoding('utf8');
-            res.on('data', (d) => {
-                canvasGauntlets = JSON.parse(d);
-                // Copy the course
-                copyCourse(canvasGauntlets[`Gauntlet ${gauntletNum}`], 19, (err, newCourse) => {
-                    if (err) {
-                        callback(err, newCourse.id);
-                    }
-                    else {
-                        callback(null, newCourse.id);
-                    }
-                });
+        console.log(gauntletNum);
+        canvas.get(`/api/v1/accounts/1/courses?search_term=${gauntletNum}%20(Pristine)`, (err, course) => {
+            console.log(course[0].id);
+            courseID = course[0].id;
+            copyCourse(courseID, 19, (err, newCourse) => {
+                if (err) {
+                    callback(err, newCourse.id);
+                } else {
+                    callback(null, newCourse.id);
+                }
             });
-        }).on('error', (e) => {
-            callback(e);
         });
     }
 
