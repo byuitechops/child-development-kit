@@ -1,3 +1,6 @@
+/*eslint-env node, es6*/
+/*eslint no-console:0*/
+
 const childModule = require('../../main.js');
 const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js');

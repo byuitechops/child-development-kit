@@ -1,3 +1,6 @@
+/*eslint-env node, es6*/
+/*eslint no-console:0*/
+
 /* Dependencies */
 const downloader = require('d2l-course-downloader');
 const decompress = require('decompress');

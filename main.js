@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+/*eslint-env node, es6*/
+/*eslint no-console:0*/
 
 const prompt = require('prompt');
 const chalk = require('chalk');

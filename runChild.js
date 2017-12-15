@@ -1,3 +1,6 @@
+/*eslint-env node, es6*/
+/*eslint no-console:0*/
+
 const path = require('path');
 const chalk = require('chalk');
 const childModule = require(path.resolve('.', './main.js'));
