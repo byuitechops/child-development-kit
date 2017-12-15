@@ -20,7 +20,7 @@
     "path": "^0.12.7",
     "prompt": "^1.0.0",
     "rimraf": "^2.6.2",
-    "unzip": "^1.0.0"
+    "unzip": "github:byuitechops/unzip"
   },
   "devDependencies": {},
   "scripts": {
