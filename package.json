@@ -37,6 +37,5 @@
     },
     "bin": {
         "updatePre": "./updateD2LGauntlets.js",
-        "updatePost": "./updateCanvasGauntlets.js"
     }
 }
