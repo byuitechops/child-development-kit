@@ -25,27 +25,27 @@ var adjustFilepaths = function (course, cb) {
 
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
-    const courseData = {
-        settings: {
-            'debug': true,
-            'readAll': true,
-            'online': true,
-            'keepFiles': true,
-            'deleteCourse': false,
-            'useDownloader': false
-        },
-        path: path.join('.', item)
-    };
-
     function buildCourse(item, mapCallback) {
-        var gauntletPath = path.join('.', item);
+
+        const courseData = {
+            settings: {
+                'debug': true,
+                'readAll': true,
+                'online': true,
+                'keepFiles': true,
+                'deleteCourse': false,
+                'useDownloader': false
+            },
+            path: path.join('.', item)
+        };
+
         asyncLib.waterfall([
             (callback) => {
                 console.log(`---`);
                 console.log(`Building course:  ${item.split('.zip')[0]}`);
                 callback();
             },
-            asyncLib.constant(gauntletPath, settings),
+            asyncLib.constant(courseData),
             createCourseObj,
             verify,
             adjustFilepaths,
@@ -58,7 +58,7 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
             verify,
         ], (waterErr, resultCourse) => {
             if (waterErr) {
-                mapCallback(waterErr, gauntletPath);
+                mapCallback(waterErr, courseData.path);
             } else {
                 mapCallback(null, resultCourse);
             }
