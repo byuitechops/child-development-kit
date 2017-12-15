@@ -2,7 +2,7 @@
     "name": "child-development-kit",
     "version": "1.0.0",
     "description": "Development environment for our developers to make child modules.",
-    "main": "cli.js",
+    "main": "cli.js",f
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -36,6 +36,6 @@
         "unzip": "github:byuitechops/unzip"
     },
     "bin": {
-        "updatePre": "./updateD2LGauntlets.js",
+        "updatePre": "./updateD2LGauntlets.js"
     }
 }
