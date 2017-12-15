@@ -17,50 +17,53 @@ const gauntlets = [
 var adjustFilepaths = function (course, cb) {
     course.addModuleReport('adjustFilepaths');
     course.info.originalFilepath = path.join('.', 'node_modules/child-development-kit/D2LOriginal', course.info.fileName);
-    course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName.split('.zip')[0]);
+    course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName
+        .split('.zip')[0]);
     course.success('adjustFilepaths', 'File paths adjusted for testing.');
     cb(null, course);
 }
 
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
-        function buildCourse(item, mapCallback) {
-            var gauntletPath = path.join('.', item);
-            asyncLib.waterfall([
-                (callback) => {
-                    console.log(`---`);
-                    console.log(`Building course:  ${item.split('.zip')[0]}`);
-                    callback();
-                },
-                asyncLib.constant(gauntletPath, settings),
-                createCourseObj,
-                verify,
-                adjustFilepaths,
-                verify,
-                standardTests,
-                verify,
-                indexCourse,
-                verify,
-                findUsedFiles,
-                verify,
-            ], (waterErr, resultCourse) => {
-                if (waterErr) {
-                    mapCallback(waterErr, gauntletPath);
-                }
-                else {
-                    mapCallback(null, resultCourse);
-                }
-            });
-        }
-
-        const settings = {
+    const courseData = {
+        settings: {
             'debug': true,
             'readAll': true,
             'online': true,
             'keepFiles': true,
             'deleteCourse': false,
             'useDownloader': false
-        };
+        },
+        path: path.join('.', item)
+    };
 
-        buildCourse(gauntlets[gauntletNum - 1], finalCallback);
+    function buildCourse(item, mapCallback) {
+        var gauntletPath = path.join('.', item);
+        asyncLib.waterfall([
+            (callback) => {
+                console.log(`---`);
+                console.log(`Building course:  ${item.split('.zip')[0]}`);
+                callback();
+            },
+            asyncLib.constant(gauntletPath, settings),
+            createCourseObj,
+            verify,
+            adjustFilepaths,
+            verify,
+            standardTests,
+            verify,
+            indexCourse,
+            verify,
+            findUsedFiles,
+            verify,
+        ], (waterErr, resultCourse) => {
+            if (waterErr) {
+                mapCallback(waterErr, gauntletPath);
+            } else {
+                mapCallback(null, resultCourse);
+            }
+        });
+    }
+
+    buildCourse(gauntlets[gauntletNum - 1], finalCallback);
 }
