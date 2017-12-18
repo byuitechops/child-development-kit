@@ -8,6 +8,8 @@ const preImportSetup = require('./preImportSetup.js');
 const postImportSetup = require('./postImportSetup.js')
 const updateD2L = require('./updateD2LGauntlets.js');
 const { childType } = require(path.resolve('.', 'package.json'));
+const verifyCourseUpload = require('./verifyCourseUpload.js');
+
 var gauntletNum = 1;
 
 if (process.argv.includes('update')) {
@@ -37,8 +39,10 @@ if (process.argv.includes('update')) {
                     if (postErr) console.log(postErr);
                     else {
                         course.info.canvasOU = courseID;
-                        childModule(course, (err, resultCourse) => {
-                            console.log(chalk.greenBright('Process complete.'));
+                        verifyCourseUpload(course, (err, course) => {
+                            childModule(course, (err, resultCourse) => {
+                                console.log(chalk.greenBright('Process complete.'));
+                            });
                         });
                     }
                 });
