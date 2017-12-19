@@ -9,6 +9,7 @@ const asyncLib = require('async');
 const path = require('path');
 const chalk = require('chalk');
 const { childType } = require(path.resolve('.', 'package.json'));
+const verifyCourseUpload = require('./verifyCourseUpload.js');
 
 function runTests(testObject, callback) {
     preImportSetup(childModule, testObject.gauntlet, (error, course) => {
@@ -27,11 +28,11 @@ function runTests(testObject, callback) {
                     if (postErr) console.log(postErr);
                     else {
                         course.info.canvasOU = courseID;
-                        childModule(course, (err, resultCourse) => {
-                            console.log(
-                                chalk.greenBright(`Setup and your Child Module have ran. Running tests for Gauntlet ${testObject.gauntlet}.`)
-                            );
-                            testObject.tests(resultCourse, callback);
+                        verifyCourseUpload(course, (err, course) => {
+                            childModule(course, (err, resultCourse) => {
+                                console.log(chalk.greenBright('Process complete.'));
+                                testObject.tests(resultCourse, callback);
+                            });
                         });
                     }
                 });

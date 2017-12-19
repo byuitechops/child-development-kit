@@ -20,10 +20,10 @@ module.exports = (course, stepCallback) => {
             } else {
                 /* If we get back an empty array or not */
                 if (modules.length > 0) {
-                    course.success('verify-course-upload', `Course has completed the upload entirely. Moving forward.`);
+                    course.success('verify-course-upload', `Course has finished unpacking.`);
                     callback(null, modules);
                 } else {
-                    course.success('verify-course-upload', `Course has not completed upload. Checking again.`);
+                    course.success('verify-course-upload', `Course has not finished unpacking. Checking again.`);
                     callback(new Error('Blank array received'));
                 }
             }
