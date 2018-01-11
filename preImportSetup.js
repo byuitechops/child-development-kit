@@ -36,7 +36,10 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
                 'deleteCourse': false,
                 'useDownloader': false
             },
-            path: path.join('.', item)
+            courseInfo: {
+                path: path.join('.', item)
+            }
+            
         };
 
         asyncLib.waterfall([
