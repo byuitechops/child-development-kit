@@ -8,6 +8,7 @@ const verify = require('course-object-verifier');
 const standardTests = require('child-module-standard-tests');
 const canvas = require('canvas-wrapper');
 const verifyCourseUpload = require('./verifyCourseUpload.js');
+const chalk = require('chalk');
 
 var canvasGauntlets;
 
@@ -30,7 +31,11 @@ var adjustFilepaths = function (course, cb) {
 module.exports = (gauntletNum, finalCallback) => {
 
     function copyGauntlet(callback) {
-        canvas.get(`/api/v1/accounts/1/courses?search_term=${gauntletNum}%20(Pristine)`, (err, course) => {
+        canvas.get(`/api/v1/accounts/1/courses?search_term=${gauntletNum}%20(Pristine)`, (getErr, course) => {
+            if (getErr) {
+                callback(getErr);
+                return;
+            }
             courseID = course[0].id;
             copyCourse(courseID, 19, (err, newCourse) => {
                 if (err) {
@@ -42,6 +47,24 @@ module.exports = (gauntletNum, finalCallback) => {
         });
     }
 
+    function setName(courseID, callback) {
+        var today = new Date();
+        canvas.put(`/api/v1/courses/${courseID}`,
+            {
+                'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
+                'course[course_code]': `CG ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
+            },
+            (err, changedCourse) => {
+                if (err) {
+                    callback(err, changedCourse.id);
+                } else {
+                    console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`));
+                    callback(null, changedCourse.id);
+                }
+            }
+        );
+    }
+
     const settings = {
         'debug': true,
         'readAll': true,
@@ -51,6 +74,8 @@ module.exports = (gauntletNum, finalCallback) => {
         'useDownloader': false
     };
 
-    copyGauntlet(finalCallback);
+    copyGauntlet((err, courseID) => {
+        setName(courseID, finalCallback);
+    });
 
 };
