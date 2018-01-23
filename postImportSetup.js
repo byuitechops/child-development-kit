@@ -49,16 +49,17 @@ module.exports = (gauntletNum, finalCallback) => {
 
     function setName(courseID, callback) {
         var today = new Date();
+        var minutes = (today.getMinutes() < 10) ? '0' + today.getMinutes() : today.getMinutes();
         canvas.put(`/api/v1/courses/${courseID}`,
             {
-                'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
+                'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes}`,
                 'course[course_code]': `CG ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
             },
             (err, changedCourse) => {
                 if (err) {
                     callback(err, changedCourse.id);
                 } else {
-                    console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`));
+                    console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes}`));
                     callback(null, changedCourse.id);
                 }
             }
