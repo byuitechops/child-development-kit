@@ -24,7 +24,7 @@ module.exports = (course, stepCallback) => {
                 callback(err);
             } else {
                 /* If we get back an empty array or not */
-                if (modules.length != moduleCount) {
+                if (modules.length >= moduleCount) {
                     course.message(`Course has finished unpacking.`);
                     callback(null, modules);
                 } else {
