@@ -57,7 +57,7 @@ module.exports = (gauntletNum, finalCallback) => {
             },
             (err, changedCourse) => {
                 if (err) {
-                    callback(err, changedCourse.id);
+                    callback(err);
                 } else {
                     console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes}`));
                     callback(null, changedCourse.id);
