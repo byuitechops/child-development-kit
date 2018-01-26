@@ -44,7 +44,7 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
 
         asyncLib.waterfall([
             (callback) => {
-                console.log(`---`);
+                console.log('---');
                 console.log(`Building course:  ${item.split('.zip')[0]}`);
                 callback();
             },
@@ -69,4 +69,4 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
     }
 
     buildCourse(gauntlets[gauntletNum - 1], finalCallback);
-}
+};
