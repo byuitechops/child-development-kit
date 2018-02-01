@@ -76,7 +76,12 @@ module.exports = (gauntletNum, finalCallback) => {
     };
 
     copyGauntlet((err, courseID) => {
-        setName(courseID, finalCallback);
+        if (err) {
+            console.log(`ERROR: ${err}`);
+        }
+        else {
+            setName(courseID, finalCallback);
+        }
     });
 
 };
