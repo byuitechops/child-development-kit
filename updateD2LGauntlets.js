@@ -10,8 +10,8 @@ const path = require('path');
 
 module.exports = () => {
     /* Deletes any old gauntlet zips or files */
-    del(['./node_modules/child-development-kit/D2LOriginal/*',
-        './node_modules/child-development-kit/D2LProcessing/*'
+    del(['./node_modules/child-development-kit/factory/unzipped/*',
+        './node_modules/child-development-kit/factory/originalZip/*'
     ]).then(paths => {
         if (paths.length > 0) {
             console.log(chalk.yellow('Outdated Zips/Files deleted:\n', paths.join('\n')));
@@ -23,7 +23,7 @@ module.exports = () => {
         var downloadData = {
             ous: ['340002', '340007', '340008', '340009'],
             domain: 'byui',
-            downloadLocation: path.resolve('.', 'node_modules/child-development-kit/D2LOriginal')
+            downloadLocation: path.resolve('.', 'node_modules/child-development-kit/factory/originalZip')
         };
 
         /* Download all of the gauntlet courses */
@@ -33,7 +33,7 @@ module.exports = () => {
             } else {
                 courses.forEach(course => {
                     decompress(course.downloadLocation,
-                            `./node_modules/child-development-kit/D2LProcessing/${course.name}`
+                            `./node_modules/child-development-kit/factory/unzipped/${course.name}`
                         )
                         .then((files) => {
                             console.log(chalk.blueBright(

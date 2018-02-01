@@ -16,8 +16,8 @@ const gauntlets = [
 ];
 
 var adjustFilepaths = function (course, cb) {
-    course.info.originalFilepath = path.join('.', 'node_modules/child-development-kit/D2LOriginal', course.info.fileName);
-    course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName
+    course.info.originalZipPath = path.join('.', 'node_modules/child-development-kit/factory/originalZip', course.info.fileName);
+    course.info.unzippedPath = path.join('.', 'node_modules/child-development-kit/factory/unzipped', course.info.fileName
         .split('.zip')[0]);
     course.success('adjustFilepaths', 'File paths adjusted for testing.');
     cb(null, course);
