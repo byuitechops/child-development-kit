@@ -1,4 +1,5 @@
-const chalk = require('chalk');
+/* eslint no-console:1 */
+
 const path = require('path');
 const createCourseObj = require('create-course-object');
 const indexCourse = require('index-directory').conversionTool;
@@ -15,13 +16,12 @@ const gauntlets = [
 ];
 
 var adjustFilepaths = function (course, cb) {
-    course.addModuleReport('adjustFilepaths');
     course.info.originalFilepath = path.join('.', 'node_modules/child-development-kit/D2LOriginal', course.info.fileName);
     course.info.unzippedFilepath = path.join('.', 'node_modules/child-development-kit/D2LProcessing', course.info.fileName
         .split('.zip')[0]);
     course.success('adjustFilepaths', 'File paths adjusted for testing.');
     cb(null, course);
-}
+};
 
 module.exports = (childModule, gauntletNum, finalCallback) => {
 
@@ -44,7 +44,7 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
 
         asyncLib.waterfall([
             (callback) => {
-                console.log(`---`);
+                console.log('---');
                 console.log(`Building course:  ${item.split('.zip')[0]}`);
                 callback();
             },
@@ -69,4 +69,4 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
     }
 
     buildCourse(gauntlets[gauntletNum - 1], finalCallback);
-}
+};
