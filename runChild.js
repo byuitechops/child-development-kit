@@ -41,14 +41,14 @@ if (process.argv.includes('update')) {
                         course.info.canvasOU = courseID;
                         verifyCourseUpload(course, (err, course) => {
                             childModule(course, (err, resultCourse) => {
-                                console.log(chalk.greenBright('Process complete.'));
+                                console.log(chalk.greenBright(`Process Complete for Gauntlet: ${course.info.canvasOU}`));
                             });
                         });
                     }
                 });
             } else {
                 childModule(course, (err, resultCourse) => {
-                    console.log(chalk.greenBright('Process complete.'));
+                    console.log(chalk.greenBright(`Process Complete for Gauntlet: ${course.info.canvasOU}`));
                 });
             }
         }
