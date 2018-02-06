@@ -37,7 +37,8 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
                 'useDownloader': false
             },
             courseInfo: {
-                path: path.join('.', item)
+                path: path.join('.', item),
+                domain: 'byui'
             }
             
         };
