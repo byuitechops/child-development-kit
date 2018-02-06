@@ -22,22 +22,6 @@ const gauntlets = [
     'Conversion Test Gauntlet 4.zip'
 ];
 
-const promptQuestions = {
-    properties: {
-        gauntletType: {
-            description: chalk.whiteBright('Is this for Pre-Import or Post-Import? <pre|post>'),
-            required: true,
-            pattern: /pre*|post*/g,
-            message: 'Must be either "pre" or "post"'
-        },
-        gauntletNumber: {
-            description: chalk.whiteBright('Which Guantlet Course are you testing? <1-4>'),
-            pattern: /1|2|3|4/g,
-            default: 1
-        }
-    }
-};
-
 var adjustFilepaths = function (course, cb) {
     course.info.originalFilepath = path.join('.', 'factory/originalZip', course.info.fileName);
     course.info.unzippedFilepath = path.join('.', 'factory/unzipped', course.info.fileName.split('.zip')[0]);
