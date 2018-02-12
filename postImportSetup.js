@@ -13,6 +13,12 @@ module.exports = (gauntletNum, finalCallback) => {
                 callback(getErr);
                 return;
             }
+            /* Ensure the course was found */
+			if (course.length < 1) {
+				callback(new Error('Cannot find pristine gauntlet. Please verify its existence'));
+				return;
+			}
+            
             var courseID = course[0].id;
             copyCourse(courseID, 19, (err, newCourse) => {
                 if (err) {
