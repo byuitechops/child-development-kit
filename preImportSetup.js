@@ -40,7 +40,7 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
                 path: path.join('.', item),
                 domain: 'byui'
             }
-            
+
         };
 
         asyncLib.waterfall([
@@ -57,8 +57,6 @@ module.exports = (childModule, gauntletNum, finalCallback) => {
             standardTests,
             verify,
             indexCourse,
-            verify,
-            findUsedFiles,
             verify,
         ], (waterErr, resultCourse) => {
             if (waterErr) {
