@@ -45,4 +45,7 @@ updater()
     .then((course) => {
         console.log(`Process complete! Course Link:\n https://byui.instructure.com/courses/${course.info.canvasOU}`);
     })
-    .catch(console.error);
+    .catch((err) => {
+        console.error(err);
+        console.log('\nIs your local gauntlet up-to-date? Try running:\n npm start update\n');
+    });
