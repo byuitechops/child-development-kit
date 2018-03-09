@@ -39,7 +39,7 @@ var userData = {
     domain: 'byui',
     platform: 'online',
     D2LOU: gauntlets[gauntletNum()],
-    downloadLocation: './factory/originalZip'
+    downloadLocation: './node_modules/child-development-kit/factory/originalZip'
 };
 
 
