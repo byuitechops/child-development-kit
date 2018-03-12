@@ -45,7 +45,7 @@ module.exports = (course, callback) => {
     }
 
     if (childType === 'preImport') {
-        return course;
+        callback(null, course);
     }
 
     return getPristine()
