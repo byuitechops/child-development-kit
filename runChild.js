@@ -51,7 +51,7 @@ function runChildModule() {
     });
 }
 
-function process() {
+function runProcess() {
     updater()
         .then(runChildModule)
         .then((course) => {
@@ -66,8 +66,4 @@ function process() {
 }
 
 
-process();
-
-module.exports = () => {
-    process();
-}
+runProcess();
