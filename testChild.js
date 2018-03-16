@@ -1,11 +1,2 @@
-const tests = require('../../Tests/childTests.js');
-
-module.exports = (course) => {
-    
-    
-
-    tests();
-
-};
-
+const runChild = require('./runChild.js');
 
