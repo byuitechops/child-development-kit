@@ -38,6 +38,7 @@ function runChildModule() {
             require('../../main.js')
         ], (err, course) => {
             if (err) return reject(err);
+            // npm_lifecycle_event is just "start" or "test" depending on which command you use
             if (process.env.npm_lifecycle_event === 'test') {
                 var childTests = require('../../Tests/childTests.js');
                 childTests(course, (err, courseObject) => {

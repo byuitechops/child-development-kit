@@ -1,3 +1,1 @@
-const runChild = require('./runChild.js');
-
-runChild();
+console.log('Please change "npm test" in your package.json to: \n "tap ./node_modules/child-development-kit/runChild.js -T"');

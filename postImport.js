@@ -52,6 +52,7 @@ module.exports = (course, callback) => {
     return getPristine()
         .then(copyTheCourse)
         .then(changeName)
+        // ADD COURSE BLUPEINRT MAKERR DEAL
         .then(changedCourse => {
             callback(null, course);
         })
