@@ -25,6 +25,7 @@ var courseData = {
 };
 
 function runChildModule() {
+    console.log(process);
     return new Promise((resolve, reject) => {
         if (process.argv.includes('update')) {
             return resolve(null);
@@ -39,6 +40,7 @@ function runChildModule() {
         ], (err, course) => {
             if (err) return reject(err);
             if (process.argv.includes('test')) {
+                console.log('TESTING');
                 var childTests = require('../../Tests/childTests.js');
                 childTests(course, (err, courseObject) => {
                     if (err) return reject(err);
