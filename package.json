@@ -7,22 +7,14 @@
     "async": "^2.6.0",
     "canvas-wrapper": "github:byuitechops/canvas-wrapper",
     "chalk": "^2.3.2",
-    "child-module-standard-tests": "github:byuitechops/child-module-standard-tests",
     "copy-a-canvas-course": "github:byuitechops/copy-a-canvas-course",
-    "course-object-verifier": "github:byuitechops/course-object-verifier",
     "create-course-object": "github:byuitechops/create-course-object",
     "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
     "decompress": "^4.2.0",
     "del": "^3.0.0",
     "enquirer": "^1.0.3",
-    "files-find-used-content": "github:byuitechops/files-find-used-content",
-    "fs": "^0.0.1-security",
     "index-directory": "github:byuitechops/index-directory",
-    "path": "^0.12.7",
-    "prompt": "^1.0.0",
-    "prompt-password": "^1.2.0",
-    "rimraf": "^2.6.2",
-    "unzip": "github:byuitechops/unzip"
+    "prompt-password": "^1.2.0"
   },
   "devDependencies": {},
   "scripts": {

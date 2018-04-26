@@ -32,7 +32,7 @@ var gauntlets = [
 ];
 
 var gauntletNum = () => {
-    return (isNaN(+process.argv[3]) ? 0 : (process.argv[3] - 1));
+    return isNaN(+process.argv[3]) ? 0 : (process.argv[3] - 1);
 };
 
 var userData = {
