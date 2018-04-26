@@ -34,7 +34,7 @@ module.exports = (course, callback) => {
             var today = new Date();
             var minutes = (today.getMinutes() < 10) ? '0' + today.getMinutes() : today.getMinutes();
             canvas.put(`/api/v1/courses/${newCourse.id}`, {
-                    'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes} - ${course.info.author}`,
+                    'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes} - ${course.info.author || course.info.username}`,
                     'course[course_code]': `CG ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
                 },
                 (err, changedCourse) => {
