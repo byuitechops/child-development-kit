@@ -9,7 +9,7 @@
     "chalk": "^2.3.2",
     "copy-a-canvas-course": "github:byuitechops/copy-a-canvas-course",
     "create-course-object": "github:byuitechops/create-course-object",
-    "d2l-course-downloader": "github:byuitechops/d2l-course-downloader",
+    "d2l-course-downloader": "github:byuitechops/d2l-course-downloader#516cdae4e585e7e06c4947a30b4ad4f95d2d9248",
     "decompress": "^4.2.0",
     "del": "^3.0.0",
     "enquirer": "^1.0.3",
