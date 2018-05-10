@@ -67,6 +67,8 @@ function runProcess() {
             if (course !== null) {
                 console.log(`Process complete! Course Link:\n https://byui.instructure.com/courses/${course.info.canvasOU}`);
             }
+            if (course.info.prototypeOU) console.log(`Prototype Exists:\n https://byui.instructure.com/courses/${course.info.prototypeOU}`);
+            if (course.info.backupOU) console.log(`Backup Created:\n https://byui.instructure.com/courses/${course.info.backupOU}`);
         })
         .catch((err) => {
             console.error(err);
