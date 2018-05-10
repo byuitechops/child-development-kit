@@ -8,6 +8,7 @@
     "canvas-wrapper": "github:byuitechops/canvas-wrapper",
     "chalk": "^2.3.2",
     "copy-a-canvas-course": "github:byuitechops/copy-a-canvas-course",
+    "course-make-blueprint": "github:byuitechops/course-make-blueprint",
     "create-course-object": "github:byuitechops/create-course-object",
     "d2l-course-downloader": "github:byuitechops/d2l-course-downloader#516cdae4e585e7e06c4947a30b4ad4f95d2d9248",
     "decompress": "^4.2.0",

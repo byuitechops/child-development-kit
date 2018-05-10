@@ -10,7 +10,7 @@ var gauntlets = [
 ];
 
 var gauntletNum = () => {
-    return (isNaN(+process.argv[3]) ? 0 : (process.argv[3] - 1));
+    return isNaN(+process.argv[3]) ? 0 : process.argv[3] - 1;
 };
 
 var courseData = {
@@ -24,7 +24,13 @@ var courseData = {
     author: author
 };
 
+function setPlatform(course, callback) {
+    course.settings.platform = 'online';
+    callback(null, course);
+}
+
 function runChildModule() {
+    
     return new Promise((resolve, reject) => {
         if (process.argv.includes('update')) {
             return resolve(null);
@@ -32,9 +38,11 @@ function runChildModule() {
         asyncLib.waterfall([
             asyncLib.constant(courseData),
             require('create-course-object'),
+            setPlatform,
             require('./adjustFilePaths.js'),
             require('index-directory').conversionTool,
             require('./postImport.js'),
+            require('course-make-blueprint'),
             require('../../main.js')
         ], (err, course) => {
             if (err) return reject(err);

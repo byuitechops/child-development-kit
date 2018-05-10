@@ -36,14 +36,14 @@ module.exports = (course, callback) => {
             var today = new Date();
             var minutes = today.getMinutes() < 10 ? '0' + today.getMinutes() : today.getMinutes();
             canvas.put(`/api/v1/courses/${newCourse.id}`, {
-                    'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes} - ${course.info.author || course.info.username}`,
-                    'course[course_code]': `CG ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
-                },
-                (err, changedCourse) => {
-                    if (err) return reject(err);
-                    console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes}`));
-                    resolve(changedCourse);
-                });
+                'course[name]': `Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes} - ${course.info.author || course.info.username}`,
+                'course[course_code]': `CG ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${today.getMinutes()}`,
+            },
+            (err, changedCourse) => {
+                if (err) return reject(err);
+                console.log(chalk.blueBright(`Gauntlet Course Name: ${chalk.greenBright(changedCourse.id)} - Conversion Gauntlet ${today.getMonth() + 1}/${today.getDate()} ${today.getHours()}:${minutes}`));
+                resolve(changedCourse);
+            });
         });
     }
 
@@ -55,14 +55,14 @@ module.exports = (course, callback) => {
     return getPristine()
         .then(copyTheCourse)
         .then(changeName)
-        // ADD COURSE BLUPEINRT MAKERR DEAL
+        // ADD COURSE BLUEPRINT MAKER DEAL
         .then(changedCourse => {
             verifyCourseUpload(course, (err, returnedCourse) => {
                 if (err) {
                     course.error(err);
                 }
                 callback(null, course);
-            })
+            });
         })
         .catch(callback);
 };
