@@ -27,11 +27,6 @@ var courseData = {
     author: author
 };
 
-function setPlatform(course, callback) {
-    course.settings.platform = 'online';
-    callback(null, course);
-}
-
 function runChildModule() {
 
     return new Promise((resolve, reject) => {
@@ -41,7 +36,6 @@ function runChildModule() {
         var workflow = [
             asyncLib.constant(courseData),
             require('create-course-object'),
-            setPlatform,
             require('./adjustFilePaths.js'),
             require('index-directory'),
             require('./postImport.js'),
