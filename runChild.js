@@ -1,7 +1,8 @@
 const updater = require('./updater.js');
 const asyncLib = require('async');
 const {
-    author
+    author,
+    name
 } = require('../../package.json');
 
 var gauntlets = [
@@ -37,16 +38,22 @@ function runChildModule() {
         if (process.argv.includes('update')) {
             return resolve(null);
         }
-        asyncLib.waterfall([
+        var workflow = [
             asyncLib.constant(courseData),
             require('create-course-object'),
             setPlatform,
             require('./adjustFilePaths.js'),
             require('index-directory'),
             require('./postImport.js'),
-            require('course-make-blueprint'),
             require('../../main.js')
-        ], (err, course) => {
+        ];
+
+        /* add course-make-blueprint if it's not the child module being tested */
+        if (name !== 'course-make-blueprint') {
+            workflow.splice(workflow.length - 1, 0, require('course-make-blueprint'));
+        }
+
+        asyncLib.waterfall(workflow, (err, course) => {
             if (err) return reject(err);
             // npm_lifecycle_event is just "start" or "test" depending on which command you use
             if (process.env.npm_lifecycle_event === 'test') {
