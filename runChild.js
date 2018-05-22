@@ -1,6 +1,8 @@
 const updater = require('./updater.js');
 const asyncLib = require('async');
-const { author } = require('../../package.json');
+const {
+    author
+} = require('../../package.json');
 
 var gauntlets = [
     '340002',
@@ -30,7 +32,7 @@ function setPlatform(course, callback) {
 }
 
 function runChildModule() {
-    
+
     return new Promise((resolve, reject) => {
         if (process.argv.includes('update')) {
             return resolve(null);
@@ -40,7 +42,7 @@ function runChildModule() {
             require('create-course-object'),
             setPlatform,
             require('./adjustFilePaths.js'),
-            require('index-directory').conversionTool,
+            require('index-directory'),
             require('./postImport.js'),
             require('course-make-blueprint'),
             require('../../main.js')
