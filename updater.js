@@ -7,22 +7,26 @@ var enquirer = new Enquirer();
 enquirer.register('password', require('prompt-password'));
 
 /* User Username */
-enquirer.question('username', 'Username:', {
-    errorMessage: 'Cannot be blank!',
-    validate: (input) => {
-        return input != '';
-    }
-});
+if (!process.env.USR) {
+    enquirer.question('username', 'Username:', {
+        errorMessage: 'Cannot be blank!',
+        validate: (input) => {
+            return input != '';
+        }
+    });
+}
 
 /* User Password */
-enquirer.question('password', {
-    type: 'password',
-    message: 'Password:',
-    errorMessage: 'Cannot be blank!',
-    validate: (input) => {
-        return input != '';
-    }
-});
+if (!process.env.PASS) {
+    enquirer.question('password', {
+        type: 'password',
+        message: 'Password:',
+        errorMessage: 'Cannot be blank!',
+        validate: (input) => {
+            return input != '';
+        }
+    });
+}
 
 var gauntlets = [
     '340002',
@@ -61,8 +65,8 @@ module.exports = () => {
         /* Get username/password */
         enquirer.ask()
             .then((answers) => {
-                userData.username = answers.username;
-                userData.password = answers.password;
+                userData.username = answers.username ? answers.username : process.env.USR;
+                userData.password = answers.password ? answers.password : process.env.PASS;
                 return userData;
             })
             /* Download the course */
