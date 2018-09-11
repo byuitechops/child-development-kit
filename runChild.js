@@ -2,7 +2,8 @@ const updater = require('./updater.js');
 const asyncLib = require('async');
 const {
     author,
-    name
+    name,
+    childType
 } = require('../../package.json');
 
 var gauntlets = [
@@ -43,7 +44,7 @@ function runChildModule() {
         ];
 
         /* add course-make-blueprint if it's not the child module being tested */
-        if (name !== 'course-make-blueprint') {
+        if (name !== 'course-make-blueprint' && childType === 'postImport') {
             workflow.splice(workflow.length - 1, 0, require('course-make-blueprint'));
         }
 
