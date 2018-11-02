@@ -84,7 +84,6 @@ module.exports = () => {
             .then(downloader)
             /* Unzip the course */
             .then((downloadData) => {
-                console.log(downloadData);
                 return decompress(`./node_modules/child-development-kit/factory/originalZip/Conversion Test Gauntlet ${gauntletNum() + 1}.zip`, `./node_modules/child-development-kit/factory/unzipped/Conversion Test Gauntlet ${gauntletNum() + 1}`);
             })
             .then((paths) => {
