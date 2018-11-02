@@ -56,11 +56,11 @@ module.exports = () => {
       }
 
       /* Delete all old gauntlets */
-      del.sync(['./node_modules/child-development-kit/factory/unzipped/*',
+      let deletedPaths = del.sync(['./node_modules/child-development-kit/factory/unzipped/*',
          './node_modules/child-development-kit/factory/originalZip/*'
-      ]).then(deletedPaths => {
-         (deletedPaths) ? console.log('Old gauntlets deleted.'): console.log('No gauntlets found. Moving on.');
-      });
+      ]);
+
+      (deletedPaths.length) ? console.log('Old gauntlets deleted.'): console.log('No gauntlets found.');
 
       /* Get username/password */
       enquirer.ask()
