@@ -2,6 +2,7 @@ const downloader = require('d2l-course-downloader');
 const Enquirer = require('enquirer');
 const del = require('del');
 const decompress = require('decompress');
+const fs = require('fs');
 var enquirer = new Enquirer();
 
 enquirer.register('password', require('prompt-password'));
@@ -80,4 +81,5 @@ module.exports = () => {
          })
          .catch(reject);
    });
+
 };
