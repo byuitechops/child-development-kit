@@ -2,6 +2,7 @@ const downloader = require('d2l-course-downloader');
 const Enquirer = require('enquirer');
 const del = require('del');
 const decompress = require('decompress');
+const fs = require('fs');
 var enquirer = new Enquirer();
 
 enquirer.register('password', require('prompt-password'));
@@ -36,7 +37,7 @@ var gauntlets = [
 ];
 
 var gauntletNum = () => {
-    return isNaN(+process.argv[3]) ? 0 : (process.argv[3] - 1);
+    return isNaN(+process.argv[3]) ? 0 : process.argv[3] - 1;
 };
 
 var userData = {
@@ -55,12 +56,22 @@ module.exports = () => {
             return resolve();
         }
 
+        // TODO check for existing gauntlets before trying to delete them
+
         /* Delete all old gauntlets */
         del.sync(['./node_modules/child-development-kit/factory/unzipped/*',
             './node_modules/child-development-kit/factory/originalZip/*'
         ]);
 
         console.log('Old gauntlets deleted.');
+
+        /* create ./factory/originalZip if needed */
+        if (!fs.existsSync('./node_modules/child-development-kit/factory/originalZip')) {
+            if (!fs.existsSync('./node_modules/child-development-kit/factory')) {
+                fs.mkdirSync('./node_modules/child-development-kit/factory');
+            }
+            fs.mkdirSync('./node_modules/child-development-kit/factory/originalZip');
+        }
 
         /* Get username/password */
         enquirer.ask()
@@ -73,6 +84,7 @@ module.exports = () => {
             .then(downloader)
             /* Unzip the course */
             .then((downloadData) => {
+                console.log(downloadData);
                 return decompress(`./node_modules/child-development-kit/factory/originalZip/Conversion Test Gauntlet ${gauntletNum() + 1}.zip`, `./node_modules/child-development-kit/factory/unzipped/Conversion Test Gauntlet ${gauntletNum() + 1}`);
             })
             .then((paths) => {
