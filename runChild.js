@@ -68,9 +68,12 @@ function runProcess() {
     updater()
         .then(runChildModule)
         .then((course) => {
-            if (course !== null) {
-                console.log(`Process complete! Course Link:\n https://byui.instructure.com/courses/${course.info.canvasOU}`);
+            /* The course will be null if the updater was called */
+            if (course === null) {
+                /* Exit Node. This is a bad solution, but it works */
+                process.exit(0);
             }
+            console.log(`Process complete! Course Link:\n https://byui.instructure.com/courses/${course.info.canvasOU}`);
             if (course.info.prototypeOU) console.log(`Prototype Exists:\n https://byui.instructure.com/courses/${course.info.prototypeOU}`);
             if (course.info.backupOU) console.log(`Backup Created:\n https://byui.instructure.com/courses/${course.info.backupOU}`);
         })

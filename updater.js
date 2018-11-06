@@ -86,8 +86,8 @@ module.exports = () => {
             })
             .then((paths) => {
                 console.log('Gauntlet is now up-to-date.');
+                return resolve();
             })
             .catch(reject);
     });
-
 };
