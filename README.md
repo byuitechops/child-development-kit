@@ -1,24 +1,27 @@
-# Child Development Kit
+# Child Development Kit (CDK)
 
 This module is solely meant to be used to help develop child modules for the [Canvas Conversion Tool](https://github.com/byuitechops/d2l-to-canvas-conversion-tool). It provides the necessary commands and tools to run child modules for testing purposes without having to run the entire tool (which would take an eon).
 
-## Commands
-
-Installation:
+## Installation
 ```
-npm install --save byuitechops/child-development-kit
+npm i --save-dev byuitechops/child-development-kit
 ```
 
-To use the CDK, go to your `package.json` and change the `scripts` property to look like this:
+## Setup
+The [child-template](https://github.com/byuitechops/child-template) repo is a boilerplate for child modules and is already set up to work with the CDK. Minor adjustments are still required.
 
-```
+### Package.json
+The CDK relies heavily on properties in your `package.json` file. To use the CDK, go to your `package.json` and change the `scripts` property to look like this:
+
+```js
 "scripts": {
     "start": "node ./node_modules/child-development-kit/runChild.js",
+    "inspect": "node --inspect-brk ./node_modules/child-development-kit/runChild.js -T"
     "test": "tap ./node_modules/child-development-kit/runChild.js -T"
 }
 ```
 
-Add a new property named `childType` with either `preImport` or `postImport` as it's value. This determines how the CDK runs the child module.
+Add a new property named `childType` with either `preImport` or `postImport` as it's value. This determines how the CDK runs the child module. **If you used the child-template boilerplate the default value for this property is `preImport`**.
 
 In order to be able to run your child module, you will need to first run this command:
 
@@ -30,18 +33,18 @@ It will prompt you for a D2L admin username and password. It will download a cop
 
 This allows you to use the following commands:
 
-Run the child module:
+- Run the child module:
 
 ```
-npm start
+npm start [gauntlet number]
 ```
 
-Run the child module and it's associated tests:
+- Run the child module and it's associated tests:
 
 ```
 npm test
 ```
 
-If the `childType` is set to `preImport`, the CDK will run your childmodule on the downloaded gauntlet export.
+If the `childType` is set to `preImport`, the CDK will run your child module on the downloaded gauntlet export.
 
 If the `childType` is set to `postImport`, a copy of the current Canvas Pristine Gauntlet will be made, and then your child module will run on it.
